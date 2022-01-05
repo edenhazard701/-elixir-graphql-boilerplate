@@ -1,0 +1,32 @@
+#!/bin/bash
+
+APP="sntx"
+
+BUILD_HOST="sntx.pl"
+BUILD_USER="wojnar"
+BUILD_AT="/tmp/edeliver/$APP/builds"
+
+START_DEPLOY=true
+CLEAN_DEPLOY=true
+
+# prevent re-installing node modules; this defaults to "."
+GIT_CLEAN_PATHS="_build rel priv/static"
+
+PRODUCTION_HOSTS="sntx.pl"
+PRODUCTION_USER="wojnar"
+
+DELIVER_TO="/home/wojnar/api"
+
+pre_erlang_clean_compile() {
+  status "Running phoenix.digest" # log output prepended with "----->"
+  __sync_remote " # runs the commands on the build host
+    [ -f ~/.profile ] && source ~/.profile # load profile (optional)
+    set -e # fail if any command fails (recommended)
+    cd '$BUILD_AT' # enter the build directory on the build host (required)
+    # prepare something
+    mkdir -p priv/static # required by the phoenix.digest task
+    # run your custom task
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest $SILENCE
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest.clean $SILENCE
+  "
+}
