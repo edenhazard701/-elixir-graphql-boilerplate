@@ -8,11 +8,11 @@
 
 ### Editor
 
-- VSCode with ElixirLS preffered
+- VSCode with ElixirLS preferred
 
 ### Development
 
-- Copy .env.local.example to .env.local
+- Copy contents of .env.local.example to .env.local
 - Set config in .env.local
 - source ./setenv.sh or ./run.sh to start app in dev mode
 
@@ -24,7 +24,7 @@
 ### Production
 
 - Standalone app behind nginx proxy.
-- Controlled by systemd (sudo systemd stop/start sntx) or using Edelivery.
+- Controlled by systemd (sudo systemd stop/start sntx) or using edelivery.
 - Systemd service file located in /etc/systemd/system/sntx.service.
 - Migrations can be also performed using server side: `~/api/sntx/bin/sntx migrate`.
 - Env file is located in `~/api/app.env` and must be imported in `.~/profile` or `~/.bashrc`.
