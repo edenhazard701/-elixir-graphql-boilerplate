@@ -1,4 +1,4 @@
-defmodule SntxGraph.Types.User do
+defmodule SntxGraph.Schema.User do
   use Absinthe.Schema.Notation
 
   import AbsintheErrorPayload.Payload

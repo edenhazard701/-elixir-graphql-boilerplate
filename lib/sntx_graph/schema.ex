@@ -3,16 +3,17 @@ defmodule SntxGraph.Schema do
   import AbsintheErrorPayload.Payload
 
   alias SntxGraph.Middleware.TranslatePayload
-  alias SntxGraph.{Types, Mutations, Queries}
+  alias SntxGraph.{Types, Mutations, Queries, Schema}
 
   import_types(Absinthe.Plug.Types)
   import_types(Absinthe.Type.Custom)
   import_types(AbsintheErrorPayload.ValidationMessageTypes)
 
-  import_types(Types.Custom)
-  import_types(Types.Json)
-  import_types(Types.User)
+  import_types(Schema.Custom)
+  import_types(Schema.User)
+
   import_types(Types.UUID4)
+  import_types(Types.Json)
 
   import_types(Mutations.Users.Accounts)
   import_types(Mutations.Users.Auth)
