@@ -17,7 +17,7 @@ defmodule SntxGraph.Resolvers.UserResolver do
   def activation_resend(args, _) do
     with {:ok, user} <- Auth.user_by_email(args.email),
          true <- Activations.confirmed?(user, :resend) do
-      {:ok, message_payload(:user_confirmed)}
+      {:ok, validation_message(:user_confirmed)}
     else
       {:error, :unconfirmed, unconfirmed} ->
         UserMailer.resend_activation(unconfirmed)
@@ -50,7 +50,7 @@ defmodule SntxGraph.Resolvers.UserResolver do
     else
       {:error, :unconfirmed, unconfirmed} ->
         UserMailer.resend_activation(unconfirmed)
-        {:ok, message_payload(:user_unconfirmed)}
+        {:ok, validation_message(:user_unconfirmed)}
 
       error ->
         mutation_error_payload(error)

@@ -2,15 +2,15 @@ defmodule SntxWeb.Payload do
   alias AbsintheErrorPayload.ValidationMessage
   import SntxWeb.Gettext
 
-  def message_payload(), do: default_error() |> message_payload()
+  def validation_message(), do: default_error() |> validation_message()
 
-  def message_payload(msg) when is_atom(msg) do
+  def validation_message(msg) when is_atom(msg) do
     msg
     |> default_error()
-    |> message_payload()
+    |> validation_message()
   end
 
-  def message_payload(msg, field \\ "base") when is_binary(msg) do
+  def validation_message(msg, field \\ "base") when is_binary(msg) do
     %ValidationMessage{
       code: :unknown,
       field: field,
@@ -44,10 +44,10 @@ defmodule SntxWeb.Payload do
         {:ok, changeset}
 
       {:error, error} ->
-        {:ok, message_payload(error)}
+        {:ok, validation_message(error)}
 
       _ ->
-        {:ok, message_payload()}
+        {:ok, validation_message()}
     end
   end
 end
