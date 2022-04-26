@@ -34,20 +34,28 @@ defmodule SntxWeb.Payload do
 
   def mutation_error_payload(error) do
     case error do
+      # Changeset errors
       %Ecto.Changeset{} = changeset ->
         {:ok, changeset}
 
+      # Repo  errors
       {:error, %Ecto.Changeset{} = changeset} ->
         {:ok, changeset}
 
+      # Ecto.Multi - changeset errors
       {:error, _, %Ecto.Changeset{} = changeset, _} ->
         {:ok, changeset}
 
+      # Ecto.Multi - custom errors
+      {:error, _, msg, _} ->
+        {:ok, validation_message(msg)}
+
+      # Custom errors
       {:error, error} ->
         {:ok, validation_message(error)}
 
+      # Unexpected errors
       _ ->
         {:ok, validation_message()}
     end
-  end
 end
