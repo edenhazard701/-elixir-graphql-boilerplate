@@ -1,4 +1,4 @@
-defmodule Sntx.Mailers.UserMailer do
+defmodule Sntx.UserMailer do
   import Bamboo.SendGridHelper
 
   alias Sntx.Mailer

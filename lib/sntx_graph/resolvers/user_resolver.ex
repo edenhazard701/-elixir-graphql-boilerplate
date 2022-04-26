@@ -1,8 +1,7 @@
-defmodule SntxGraph.Resolvers.UserResolver do
+defmodule SntxGraph.UserResolver do
   import SntxWeb.Payload
 
-  alias Sntx.{Repo, Guardian}
-  alias Sntx.Mailers.UserMailer
+  alias Sntx.{Repo, Guardian, UserMailer}
   alias Sntx.Models.User.{Account, Activations, Auth, Passwords}
 
   def activate(args, _) do

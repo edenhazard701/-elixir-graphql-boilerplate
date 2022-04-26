@@ -1,8 +1,8 @@
-defmodule SntxGraph.Queries.UserQueries do
+defmodule SntxGraph.UserQueries do
   use Absinthe.Schema.Notation
 
   alias SntxGraph.Middleware.Authorize
-  alias SntxGraph.Resolvers.UserResolver
+  alias SntxGraph.UserResolver
 
   object :user_queries do
     @desc "Current account. Null when user is guest/banned/deleted"

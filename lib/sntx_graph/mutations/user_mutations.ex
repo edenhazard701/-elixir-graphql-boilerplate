@@ -1,8 +1,8 @@
-defmodule SntxGraph.Mutations.UserMutations do
+defmodule SntxGraph.UserMutations do
   use Absinthe.Schema.Notation
 
   alias SntxGraph.Middleware.Authorize
-  alias SntxGraph.Resolvers.UserResolver
+  alias SntxGraph.UserResolver
 
   object :user_mutations do
     field :user_create, :user_account_payload do

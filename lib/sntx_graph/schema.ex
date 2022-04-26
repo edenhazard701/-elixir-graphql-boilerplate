@@ -3,7 +3,7 @@ defmodule SntxGraph.Schema do
   import AbsintheErrorPayload.Payload
 
   alias SntxGraph.Middleware.TranslatePayload
-  alias SntxGraph.{Types, Mutations, Queries, Scalars}
+  alias SntxGraph.Scalars
 
   import_types(Absinthe.Plug.Types)
   import_types(Absinthe.Type.Custom)
@@ -12,11 +12,11 @@ defmodule SntxGraph.Schema do
   import_types(Scalars.UUID4)
   import_types(Scalars.JSON)
 
-  import_types(Types.CustomTypes)
-  import_types(Types.UserTypes)
+  import_types(SntxGraph.CustomTypes)
+  import_types(SntxGraph.UserTypes)
 
-  import_types(Mutations.UserMutations)
-  import_types(Queries.UserQueries)
+  import_types(SntxGraph.UserMutations)
+  import_types(SntxGraph.UserQueries)
 
   mutation do
     import_fields(:user_mutations)
