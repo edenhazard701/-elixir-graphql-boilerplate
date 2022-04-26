@@ -58,4 +58,5 @@ defmodule SntxWeb.Payload do
       _ ->
         {:ok, validation_message()}
     end
+  end
 end
