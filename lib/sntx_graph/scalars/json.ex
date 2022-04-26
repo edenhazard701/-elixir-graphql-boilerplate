@@ -1,4 +1,4 @@
-defmodule SntxGraph.Types.Json do
+defmodule SntxGraph.Scalars.JSON do
   use Absinthe.Schema.Notation
 
   scalar :json, name: "Json" do

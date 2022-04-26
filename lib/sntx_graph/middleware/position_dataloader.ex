@@ -1,4 +1,4 @@
-defmodule SntxGraph.PositionDataloader do
+defmodule SntxGraph.Middleware.PositionDataloader do
   import Ecto.Query
 
   def data do

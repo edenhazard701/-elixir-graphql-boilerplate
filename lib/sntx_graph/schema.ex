@@ -3,28 +3,23 @@ defmodule SntxGraph.Schema do
   import AbsintheErrorPayload.Payload
 
   alias SntxGraph.Middleware.TranslatePayload
-  alias SntxGraph.{Types, Mutations, Queries, Schema}
+  alias SntxGraph.{Types, Mutations, Queries, Scalars}
 
   import_types(Absinthe.Plug.Types)
   import_types(Absinthe.Type.Custom)
   import_types(AbsintheErrorPayload.ValidationMessageTypes)
 
-  import_types(Schema.Custom)
-  import_types(Schema.User)
+  import_types(Scalars.UUID4)
+  import_types(Scalars.JSON)
 
-  import_types(Types.UUID4)
-  import_types(Types.Json)
+  import_types(Types.CustomTypes)
+  import_types(Types.UserTypes)
 
-  import_types(Mutations.Users.Accounts)
-  import_types(Mutations.Users.Auth)
-  import_types(Mutations.Users.Passwords)
-
-  import_types(Queries.Users)
+  import_types(Mutations.UserMutations)
+  import_types(Queries.UserQueries)
 
   mutation do
-    import_fields(:user_account_mutations)
-    import_fields(:user_auth_mutations)
-    import_fields(:user_password_mutations)
+    import_fields(:user_mutations)
   end
 
   query do
@@ -44,7 +39,7 @@ defmodule SntxGraph.Schema do
   end
 
   def context(ctx) do
-    alias SntxGraph.{BasicDataloader, PositionDataloader}
+    alias SntxGraph.Middleware.{BasicDataloader, PositionDataloader}
 
     loader =
       Dataloader.new(get_policy: :return_nil_on_error)

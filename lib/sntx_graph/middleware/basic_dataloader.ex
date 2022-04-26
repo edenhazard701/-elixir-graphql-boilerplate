@@ -1,4 +1,4 @@
-defmodule SntxGraph.BasicDataloader do
+defmodule SntxGraph.Middleware.BasicDataloader do
   import Ecto.Query
 
   def data do

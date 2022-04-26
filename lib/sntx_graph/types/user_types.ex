@@ -1,4 +1,4 @@
-defmodule SntxGraph.Schema.User do
+defmodule SntxGraph.Types.UserTypes do
   use Absinthe.Schema.Notation
 
   import AbsintheErrorPayload.Payload
@@ -48,6 +48,5 @@ defmodule SntxGraph.Schema.User do
 
   object :user_session do
     field :token, :string
-    field :email, :string
   end
 end

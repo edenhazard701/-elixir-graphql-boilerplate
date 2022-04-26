@@ -1,27 +1,21 @@
-defmodule SntxGraph.Queries.Users do
+defmodule SntxGraph.Queries.UserQueries do
   use Absinthe.Schema.Notation
 
-  alias Sntx.Repo
-  alias Sntx.Models.User.Account
   alias SntxGraph.Middleware.Authorize
+  alias SntxGraph.Resolvers.UserResolver
 
   object :user_queries do
     @desc "Current account. Null when user is guest/banned/deleted"
     field :user_current, :user_account do
       middleware(Authorize)
-
-      resolve(fn _, %{context: ctx} ->
-        {:ok, Repo.get(Account, ctx.user.id)}
-      end)
+      resolve(&UserResolver.get_current/2)
     end
 
     field :user_profile, :user_public_account do
       arg :id, :uuid4
-      middleware(Authorize)
 
-      resolve(fn args, _ ->
-        {:ok, Repo.get(Account, args.id)}
-      end)
+      middleware(Authorize)
+      resolve(&UserResolver.get/2)
     end
   end
 end
