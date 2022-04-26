@@ -7,7 +7,6 @@ defmodule SntxGraph.Mutations.UserMutations do
   object :user_mutations do
     field :user_create, :user_account_payload do
       arg :input, non_null(:user_account_create_input)
-      arg :registration_key, non_null(:uuid4)
 
       resolve(&UserResolver.create/2)
     end
