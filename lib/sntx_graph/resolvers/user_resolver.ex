@@ -2,7 +2,7 @@ defmodule SntxGraph.UserResolver do
   import SntxWeb.Payload
 
   alias Sntx.{Repo, Guardian, UserMailer}
-  alias Sntx.Models.User.{Account, Activations, Auth, Passwords}
+  alias Sntx.User.{Account, Activations, Auth, Passwords}
 
   def activate(args, _) do
     with {:ok, user} <- Activations.confirm(args.code),

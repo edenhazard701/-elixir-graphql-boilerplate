@@ -4,7 +4,7 @@ defmodule SntxGraph.UserTypes do
   import AbsintheErrorPayload.Payload
 
   alias Sntx.Uploaders
-  alias Sntx.Models.User.Account
+  alias Sntx.User.Account
 
   payload_object(:user_account_payload, :user_account)
   payload_object(:user_session_payload, :user_session)

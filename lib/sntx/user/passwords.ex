@@ -1,12 +1,12 @@
-defmodule Sntx.Models.User.Passwords do
+defmodule Sntx.User.Passwords do
   use Timex
 
   import Ecto.Changeset
-  import Sntx.Models.User.Validations
+  import Sntx.User.Validations
   import SntxWeb.Gettext
 
   alias Sntx.Repo
-  alias Sntx.Models.User.Account
+  alias Sntx.User.Account
 
   def update(user, %{password: password}) do
     user

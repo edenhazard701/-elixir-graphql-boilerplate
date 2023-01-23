@@ -1,5 +1,5 @@
-defmodule Sntx.Models.User.Account do
-  use Sntx.Models
+defmodule Sntx.User.Account do
+  use Sntx.Schema
   use Waffle.Ecto.Schema
 
   import Ecto.{Changeset, Query}

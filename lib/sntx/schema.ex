@@ -1,4 +1,4 @@
-defmodule Sntx.Models do
+defmodule Sntx.Schema do
   @moduledoc "Ecto Schema Helpers"
 
   defmacro __using__(_) do

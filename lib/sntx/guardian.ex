@@ -2,7 +2,7 @@ defmodule Sntx.Guardian do
   use Guardian, otp_app: :sntx
 
   alias Sntx.Repo
-  alias Sntx.Models.User.Account
+  alias Sntx.User.Account
 
   def subject_for_token(user, _claims) do
     sub = to_string(user.id)

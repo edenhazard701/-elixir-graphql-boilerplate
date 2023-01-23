@@ -1,9 +1,9 @@
-defmodule Sntx.Models.User.Auth do
+defmodule Sntx.User.Auth do
   import Ecto.Query
   import SntxWeb.Payload
 
   alias Sntx.Repo
-  alias Sntx.Models.User.Account
+  alias Sntx.User.Account
 
   def user_by_email(nil), do: {:error, default_error(:invalid_credentials)}
 

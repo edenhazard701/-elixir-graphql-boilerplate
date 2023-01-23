@@ -1,4 +1,4 @@
-defmodule Sntx.Models.User.Validations do
+defmodule Sntx.User.Validations do
   import Ecto.Changeset
   import SntxWeb.{Payload, Gettext}
 

@@ -1,12 +1,12 @@
-defmodule Sntx.Models.User.Activations do
+defmodule Sntx.User.Activations do
   use Timex
 
   import Ecto.Changeset
-  import Sntx.Models.User.Validations
+  import Sntx.User.Validations
   import SntxWeb.Gettext
 
   alias Sntx.Repo
-  alias Sntx.Models.User.Account
+  alias Sntx.User.Account
 
   def generate_token(%Account{} = user) do
     case save_token(user, :signup, %{
