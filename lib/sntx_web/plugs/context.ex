@@ -22,7 +22,7 @@ defmodule SntxWeb.Plugs.Context do
 
   defp set_user(conn) do
     with {:ok, token} <- get_token(conn),
-         {:ok, user, _} <- Sntx.Guardian.resource_from_token(token) do
+        {:ok, user, _} <- Sntx.Guardian.resource_from_token(token) do
       user
     else
       {:error, _reason} -> nil

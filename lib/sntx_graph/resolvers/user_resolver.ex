@@ -6,7 +6,7 @@ defmodule SntxGraph.UserResolver do
 
   def activate(args, _) do
     with {:ok, user} <- Activations.confirm(args.code),
-         {:ok, token, _} <- Guardian.encode_and_sign(user) do
+        {:ok, token, _} <- Guardian.encode_and_sign(user) do
       {:ok, %{token: token}}
     else
       error -> mutation_error_payload(error)
@@ -15,7 +15,7 @@ defmodule SntxGraph.UserResolver do
 
   def activation_resend(args, _) do
     with {:ok, user} <- Auth.user_by_email(args.email),
-         true <- Activations.confirmed?(user, :resend) do
+        true <- Activations.confirmed?(user, :resend) do
       {:ok, validation_message(:user_confirmed)}
     else
       {:error, :unconfirmed, unconfirmed} ->
@@ -29,8 +29,8 @@ defmodule SntxGraph.UserResolver do
 
   def create(%{input: input}, _) do
     with {:ok, user} <- Account.create(input),
-         {:ok, user} <- Activations.generate_token(user),
-         {:ok, _} <- UserMailer.welcome(user) do
+        {:ok, user} <- Activations.generate_token(user),
+        {:ok, _} <- UserMailer.welcome(user) do
       {:ok, user}
     else
       error -> mutation_error_payload(error)
@@ -43,8 +43,8 @@ defmodule SntxGraph.UserResolver do
 
   def login(args, _) do
     with {:ok, user} <- Auth.login(args),
-         {:ok, token, _} <- Guardian.encode_and_sign(user),
-         true <- Activations.confirmed?(user, :login) do
+        {:ok, token, _} <- Guardian.encode_and_sign(user),
+        true <- Activations.confirmed?(user, :login) do
       {:ok, %{token: token}}
     else
       {:error, :unconfirmed, unconfirmed} ->
@@ -68,7 +68,7 @@ defmodule SntxGraph.UserResolver do
     }
 
     with {:ok, user} <- Auth.login(params),
-         {:ok, user} <- Passwords.update(user, args) do
+        {:ok, user} <- Passwords.update(user, args) do
       {:ok, user}
     else
       error -> mutation_error_payload(error)
@@ -77,8 +77,8 @@ defmodule SntxGraph.UserResolver do
 
   def password_reset(args, _) do
     with {:ok, user} <- Auth.user_by_email(args[:email]),
-         {:ok, user} <- Passwords.generate_token(user),
-         {:ok, _email} <- UserMailer.reset_password(user) do
+        {:ok, user} <- Passwords.generate_token(user),
+        {:ok, _email} <- UserMailer.reset_password(user) do
       {:ok, true}
     else
       error -> mutation_error_payload(error)
@@ -87,8 +87,8 @@ defmodule SntxGraph.UserResolver do
 
   def password_reset_set_new(args, _) do
     with {:ok, account} <- Passwords.validate_token(args.code),
-         {:ok, account} <- Passwords.update(account, args),
-         {:ok, token, _} <- Guardian.encode_and_sign(account) do
+        {:ok, account} <- Passwords.update(account, args),
+        {:ok, token, _} <- Guardian.encode_and_sign(account) do
       {:ok, %{token: token, email: account.email}}
     else
       error -> mutation_error_payload(error)

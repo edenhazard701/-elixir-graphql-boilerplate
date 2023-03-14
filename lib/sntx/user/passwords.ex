@@ -17,9 +17,9 @@ defmodule Sntx.User.Passwords do
 
   def generate_token(user) do
     case save_token(user, %{
-           reset_password_token: SecureRandom.urlsafe_base64(12),
-           reset_password_sent_at: DateTime.truncate(Timex.now(), :second)
-         }) do
+          reset_password_token: SecureRandom.urlsafe_base64(12),
+          reset_password_sent_at: DateTime.truncate(Timex.now(), :second)
+        }) do
       {:ok, user} -> {:ok, user}
       {:error, reason} -> {:error, reason}
     end

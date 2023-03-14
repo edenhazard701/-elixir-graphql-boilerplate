@@ -10,9 +10,9 @@ defmodule Sntx.User.Activations do
 
   def generate_token(%Account{} = user) do
     case save_token(user, :signup, %{
-           confirmation_token: SecureRandom.urlsafe_base64(12),
-           confirmation_sent_at: DateTime.truncate(Timex.now(), :second)
-         }) do
+          confirmation_token: SecureRandom.urlsafe_base64(12),
+          confirmation_sent_at: DateTime.truncate(Timex.now(), :second)
+        }) do
       {:ok, user} -> {:ok, user}
       {:error, reason} -> {:error, reason}
     end
