@@ -34,7 +34,7 @@ defmodule Sntx.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.15"},
+      {:phoenix, "~> 1.7.3"},
       {:phoenix_ecto, "~> 4.4"},
       {:gettext, "~> 0.22"},
       {:jason, "~> 1.4"},
